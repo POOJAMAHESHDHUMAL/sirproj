@@ -30,8 +30,8 @@ pipeline {
             steps {
                 sh '''
                 aws s3 cp \
-                /mnt/war/project/target/LoginWebApp.war \
-                s3://war-loginwebap/
+                /mnt/war/sirproj/target/LoginWebApp.war \
+                s3://poojasbucketmah/
                 '''
             }
         }
@@ -39,8 +39,8 @@ pipeline {
         stage('DEPLOY ON SLAVE') {
             agent {
                 node {
-                    label 'slave1'
-                    customWorkspace '/mnt/jenkins-slave1'
+                    label 'slave'
+                    customWorkspace '/mnt/slave-node'
                 }
             }
 
@@ -57,7 +57,7 @@ pipeline {
 
                 docker run -d -p 90:8080 --name server1 tomcat:9
 
-                aws s3 cp s3://war-loginwebap/LoginWebApp.war .
+                aws s3 cp s3://poojasbucketmah/LoginWebApp.war .
 
                 docker cp LoginWebApp.war server1:/usr/local/tomcat/webapps/
 
