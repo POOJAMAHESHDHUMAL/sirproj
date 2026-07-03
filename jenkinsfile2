@@ -12,7 +12,7 @@ pipeline {
             steps {
                 sh '''
                 rm -rf sirproj
-                git clone https://github.com/POOJAMAHESHDHUMAL/sirproj.git
+                git -b feature1 clone https://github.com/POOJAMAHESHDHUMAL/sirproj.git
                 '''
             }
         }
@@ -51,17 +51,17 @@ pipeline {
                 sudo systemctl start docker
                 sudo systemctl enable docker
 
-                docker rm -f server1 || true
+                docker rm -f server2 || true
 
                 docker pull tomcat:9
 
-                docker run -d -p 90:8080 --name server1 tomcat:9
+                docker run -d -p 100:8080 --name server2 tomcat:9
 
                 aws s3 cp s3://poojasbucketmah/LoginWebApp.war .
 
-                docker cp LoginWebApp.war server1:/usr/local/tomcat/webapps/
+                docker cp LoginWebApp.war server2:/usr/local/tomcat/webapps/
 
-                docker restart server1
+                docker restart server2
                 '''
             }
         }
