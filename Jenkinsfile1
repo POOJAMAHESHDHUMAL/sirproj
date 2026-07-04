@@ -40,13 +40,12 @@ pipeline {
             agent {
                 node {
                     label 'slave1'
-                    customWorkspace '/mnt/jenkins-slave1'
+                    customWorkspace '/mnt/slave_node'
                 }
             }
 
             steps {
                 sh '''
-                sudo yum install -y git
                 sudo yum install -y docker
 
                 sudo systemctl start docker
