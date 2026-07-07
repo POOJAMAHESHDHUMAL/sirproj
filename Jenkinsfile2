@@ -11,8 +11,8 @@ pipeline {
         stage('SCM') {
             steps {
                 sh '''
-                rm -rf projectDF
-                git clone https://github.com/Hrishikeshkul/projectDF.git
+                rm -rf project
+                git clone https://github.com/Hrishikeshkul/project.git
                 '''
             }
         }
@@ -20,7 +20,7 @@ pipeline {
         stage('BUILD') {
             steps {
                 sh '''
-                cd /mnt/war/projectDF
+                cd /mnt/war/project
                 mvn clean package
                 '''
             }
