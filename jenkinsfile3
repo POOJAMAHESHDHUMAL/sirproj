@@ -36,7 +36,7 @@ pipeline {
       stage('DEPLOY ON SLAVE') {
             agent {
                 node {
-                    label 'slave1'
+                    label 'slave'
                     customWorkspace '/mnt/jenkins-slave1'
                 }
             }
