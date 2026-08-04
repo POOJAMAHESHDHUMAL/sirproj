@@ -68,7 +68,7 @@ echo "war uploaded successfully"
 }
 }
 stage('build docker image'){
-stages{
+steps{
 sh '''
 echo " building docker image"
 docker build -t ${IMAGE_NAME}:${IMAGE_TAG}
@@ -96,7 +96,7 @@ echo "docker image pushed sucessfully"
 }
 }
 post{
-sucess{
+success{
 echo "CI pipeline completed suceessfully"
 echo "docker image: ${IMAGE_NAME}:${IMAGE_TAG}"
 }
