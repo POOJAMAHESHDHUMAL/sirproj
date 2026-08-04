@@ -94,6 +94,7 @@ echo "docker image pushed sucessfully"
 '''
 }
 }
+}
 post{
 sucess{
 echo "CI pipeline completed suceessfully"
@@ -102,10 +103,8 @@ echo "docker image: ${IMAGE_NAME}:${IMAGE_TAG}"
 failure{
 echo "CI pipeline failed"
 }
-}
 always{
 sh 'docker logout || true'
-}
 }
 }
 }
