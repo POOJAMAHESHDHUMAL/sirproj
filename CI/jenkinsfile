@@ -37,22 +37,26 @@ mvn --version
 echo "docker version"
 docker --version
 echo "aws-cli"
-docker --version
+aws --version
 
 '''
 }
 stage('build application'){
-sh ;''
-echo "nuilding java apps"
+steps{
+sh '''
+echo "building java apps"
 mvn clean install
 echo "build completed sucessfully"
 '''
-}
+}}
 stage('verify war file'){
+steps{
 sh '''
 echo "generated war file"
 ls -lh target/
 find target -name "*.war"
 '''
 }
+}
+
 }
