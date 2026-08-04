@@ -58,5 +58,13 @@ find target -name "*.war"
 '''
 }
 }
+stage('upload war to S3'){
+steps{
+sh '''
+echo "uploading war to s3"
+aws s3 cp target/*.war s3://poojasbucketmah/one/
+
+}
+}
 
 }
