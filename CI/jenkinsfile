@@ -7,7 +7,7 @@ customWorkspace '/mnt/project'
 }
 environment{
 DOCKER = credentials('swaraj')
-IMAGE_NAME = "project"
+IMAGE_NAME = "dhumalpd2001/project"
 IMAGE_TAG = "1.0"
 }
 stages{
