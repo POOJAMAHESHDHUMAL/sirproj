@@ -42,6 +42,17 @@ docker --version
 '''
 }
 stage('build application'){
-
+sh ;''
+echo "nuilding java apps"
+mvn clean install
+echo "build completed sucessfully"
+'''
+}
+stage('verify war file'){
+sh '''
+echo "generated war file"
+ls -lh target/
+find target -name "*.war"
+'''
 }
 }
