@@ -11,6 +11,33 @@ IMAGE_NAME = "dhumalpd2001/project"
 IMAGE_TAG = "1.0"
 }
 stages{
-stage('clean workspace'){\
+stage('clean workspace'){
+steps{
+sh '''
+echo " cleaning workspace "
+rm -rf *
+'''
+}
+stage('checkout source code'){
+steps{
+checkout scm
+sh '''
+pwd
+ls -ltr
+'''
+}
+}
+stage('verify installed tools'){
+steps{
+sh '''
+echo "java version"
+java -version
+echo "maven version"
+mvn --version
+echo docker version
+docker --version
+
+'''
+}
 
 }
