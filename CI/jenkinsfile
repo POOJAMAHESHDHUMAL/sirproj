@@ -63,8 +63,48 @@ steps{
 sh '''
 echo "uploading war to s3"
 aws s3 cp target/*.war s3://poojasbucketmah/one/
-
+echo "war uploaded successfully"
+'''
 }
 }
-
+stage('build docker image'){
+stages{
+sh '''
+echo " building docker image"
+docker build -t ${IMAGE_NAME}:${IMAGE_TAG}
+echo "docker image create successfully"
+docker images
+'''
+}
+}
+stage('docker hub login'){
+steps{
+sh '''
+echo "docker hub login"
+echo "$DOCKER_PSW" | docker login -u "$DOCKER_USR" --password-stdin
+'''
+}
+}
+stage('push docker image'){
+steps{
+sh '''
+echo "pushing docker image"
+docker push ${IMAGE_NAME}:${IMAGE_TAG}
+echo "docker image pushed sucessfully"
+'''
+}
+}
+post{
+sucess{
+echo "CI pipeline completed suceessfully"
+echo "docker image: ${IMAGE_NAME}:${IMAGE_TAG}"
+}
+failure{
+echo "CI pipeline failed"
+}
+}
+always{
+sh 'docker logout || true'
+}
+}
 }
