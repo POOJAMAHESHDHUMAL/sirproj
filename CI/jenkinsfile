@@ -1,1 +1,16 @@
+pipeline {
+agent {
+node {
+label 'build-in'
+customerWorkspace '/mnt/project'
+}
+}
+environment{
+DOCKER = credencials('swaraj')
+IMAGE_NAME = "dhumalpd2001/project"
+IMAGE_TAG = "1.0"
+}
+stages{
+stage('clean workspace'){\
 
+}
