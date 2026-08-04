@@ -7,7 +7,7 @@ customWorkspace '/mnt/project'
 }
 environment{
 DOCKER = credentials('swaraj')
-IMAGE_NAME = "dhumalpd2001\project"
+IMAGE_NAME = "project"
 IMAGE_TAG = "1.0"
 }
 stages{
@@ -71,7 +71,7 @@ stage('build docker image'){
 steps{
 sh '''
 echo " building docker image"
-docker build -t ${IMAGE_NAME}:${IMAGE_TAG} .
+docker build -t dhumalpd2001/${IMAGE_NAME}:${IMAGE_TAG} .
 echo "docker image create successfully"
 docker images
 '''
