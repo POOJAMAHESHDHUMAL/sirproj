@@ -2,11 +2,11 @@ pipeline {
 agent {
 node {
 label 'build-in'
-customerWorkspace '/mnt/project'
+customWorkspace '/mnt/project'
 }
 }
 environment{
-DOCKER = credencials('swaraj')
+DOCKER = credentials('swaraj')
 IMAGE_NAME = "dhumalpd2001/project"
 IMAGE_TAG = "1.0"
 }
@@ -17,6 +17,7 @@ sh '''
 echo " cleaning workspace "
 rm -rf *
 '''
+}
 }
 stage('checkout source code'){
 steps{
@@ -38,9 +39,8 @@ echo "docker version"
 docker --version
 echo "aws-cli"
 aws --version
-
 '''
-}
+}}
 stage('build application'){
 steps{
 sh '''
