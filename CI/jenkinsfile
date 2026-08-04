@@ -34,10 +34,14 @@ echo "java version"
 java -version
 echo "maven version"
 mvn --version
-echo docker version
+echo "docker version"
+docker --version
+echo "aws-cli"
 docker --version
 
 '''
 }
+stage('build application'){
 
+}
 }
