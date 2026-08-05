@@ -1,14 +1,14 @@
-pipeline{
-agent{
-node{
+pipeline {
+agent {
+node {
 label 'slave-node'
 customWorkspace '/mnt/slave_node'
 }
 }
 environment {
-DOCKER = credencials('swaraj');
+DOCKER = credentials('swaraj')
 }
-stages{
+stages {
   stage('cleaning workspace'){
   steps{
 sh '''
@@ -18,7 +18,7 @@ echo "slave workspace cleaned"
 '''
 }
 }
-stage('sourcecode checkout'){
+stage('sourcecode checkout') {
 steps{
 checkout scm
 sh '''
@@ -27,7 +27,7 @@ ls -ltr
 '''
 }
 }
-stage('verify docker'){
+stage('verify docker') {
 steps{
 sh '''
 echo "docker version"
@@ -37,7 +37,7 @@ docker compose version
 '''
 }
 }
-stage('docker hub login'){
+stage('docker hub login') {
 steps{
 sh '''
 echo "docker login"
@@ -45,7 +45,7 @@ $DOCKER_PSW | dockerlogin -u $DOCKER_USR --password -stdin
 '''
 }
 }
-stage('create env file'){
+stage('create env file') {
 steps{
 sh '''
 cd  /mnt/slave_node/CD
@@ -55,7 +55,7 @@ cat .env
 '''
 }
 }
-stage('deploy application'){
+stage('deploy application') {
 steps{
 sh '''
 cd /mnt/slave_node/CD
@@ -65,7 +65,7 @@ docker compose up -d
 '''
 }
 }
-stage('verify deplyment'){
+stage('verify deplyment') {
 steps{
 sh '''
 echo "rnuning containers"
