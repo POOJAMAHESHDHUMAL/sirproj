@@ -2,7 +2,7 @@ pipeline{
 agent{
 node{
 label 'slave-node'
-customWorkspace '/mnt/slave-node'
+customWorkspace '/mnt/slave_node'
 }
 }
 environment {
@@ -44,5 +44,14 @@ $DOCKER_PSW | dockerlogin -u $DOCKER_USR --password -stdin
 '''
 }
 }
-
+stage('create env file'){
+steps{
+sh '''
+cd  /mnt/slave_node/CD
+echo "DOCKER_IMAGE = $DOCKER_IMAGE" > .env
+echo "IMAGE_TAG = $IMAGE_TAG" >> .env
+cat .env
+'''
+}
+}
 }
