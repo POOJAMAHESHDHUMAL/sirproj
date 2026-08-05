@@ -33,9 +33,16 @@ echo "docker version"
 docker --version
 echo "docker compose version"
 docker compose version
-
+'''
 }
 }
-
+stage('docker hub login'){
+steps{
+sh '''
+echo "docker login"
+$DOCKER_PSW | dockerlogin -u $DOCKER_USR --password -stdin
+'''
+}
+}
 
 }
