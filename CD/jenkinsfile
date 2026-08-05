@@ -1,1 +1,23 @@
+pipeline{
+agent{
+node{
+label 'slave-node'
+customWorkspace '/mnt/slave-node'
+}
+}
+environment {
+DOCKER = credencials('swaraj');
+}
+stages{
+  stage{
+  steps{
+sh '''
+echo "cleaning workspace"
+rm -rf *
+echo "slave workspace cleaned"
+'''
+}
 
+}
+}
+}
