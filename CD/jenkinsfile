@@ -54,4 +54,25 @@ cat .env
 '''
 }
 }
+stage('deploy application'){
+steps{
+sh '''
+cd /mnt/slave_node/CD
+docker compose down || true
+docker compose pull
+docker compose up -d
+'''
+}
+}
+stage('verify deplyment'){
+steps{
+sh '''
+echo "rnuning containers"
+docker ps
+echo "docker compose status"
+docker compose ps
+'''
+}
+}
+
 }
