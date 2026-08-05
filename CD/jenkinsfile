@@ -74,5 +74,15 @@ docker compose ps
 '''
 }
 }
-
+post{
+success{
+echo "CD pipeline completed suceessfully"
+}
+failure{
+echo "CD pipeline failed"
+}
+always{
+sh 'docker logout || true'
+}
+}
 }
