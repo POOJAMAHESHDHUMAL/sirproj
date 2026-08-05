@@ -41,7 +41,7 @@ stage('docker hub login') {
 steps{
 sh '''
 echo "docker login"
-$DOCKER_PSW | dockerlogin -u $DOCKER_USR --password -stdin
+echo "$DOCKER_PSW" | dockerlogin -u "$DOCKER_USR" --password -stdin
 '''
 }
 }
