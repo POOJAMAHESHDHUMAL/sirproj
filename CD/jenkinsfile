@@ -75,6 +75,7 @@ docker compose ps
 '''
 }
 }
+}
 post{
 success{
 echo "CD pipeline completed suceessfully"
