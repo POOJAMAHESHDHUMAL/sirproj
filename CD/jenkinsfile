@@ -17,6 +17,7 @@ rm -rf *
 echo "slave workspace cleaned"
 '''
 }
+}
 stage('sourcecode checkout'){
 steps{
 checkout scm
