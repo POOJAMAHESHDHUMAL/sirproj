@@ -9,7 +9,7 @@ environment {
 DOCKER = credencials('swaraj');
 }
 stages{
-  stage{
+  stage('cleaning workspace'){
   steps{
 sh '''
 echo "cleaning workspace"
@@ -17,7 +17,25 @@ rm -rf *
 echo "slave workspace cleaned"
 '''
 }
+stage('sourcecode checkout'){
+steps{
+checkout scm
+sh '''
+echo "scm checkout done"
+ls -ltr
+'''
+}
+}
+stage('verify docker'){
+steps{
+sh '''
+echo "docker version"
+docker --version
+echo "docker compose version"
+docker compose version
 
 }
 }
+
+
 }
