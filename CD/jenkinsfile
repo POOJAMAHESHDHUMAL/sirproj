@@ -71,8 +71,8 @@ steps{
 sh '''
 pwd
 echo "ruuning containers"
-cd  /mnt/slave_node/CD
 docker ps
+cd  /mnt/slave_node/CD
 echo "docker compose status"
 docker compose ps
 '''
