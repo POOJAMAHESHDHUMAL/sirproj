@@ -1,4 +1,4 @@
-FROM tomcat:10
+FROM tomcat:9.0-jdk8
 RUN rm -rf /usr/local/tomcat/webapps/*
 COPY target/*.war /usr/local/tomcat/webapps/
 EXPOSE 8080
