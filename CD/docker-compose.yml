@@ -1,5 +1,4 @@
-service:
-
+services:
 tomcat1:
    image: ${IMAGENAME}:${IMAGETAG}
    containername : tomcat1
