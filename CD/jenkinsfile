@@ -58,7 +58,6 @@ cat .env
 stage('deploy application') {
 steps{
 sh '''
-cd /mnt/slave_node/CD
 pwd
 docker compose down || true
 docker compose pull
